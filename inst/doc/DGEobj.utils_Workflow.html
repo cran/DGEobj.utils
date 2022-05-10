@@ -16,7 +16,19 @@
 
 <title>DGEobj.utils: An Example Workflow</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -26,6 +38,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -127,7 +140,187 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -148,49 +341,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="#introduction-and-setup"><span class="toc-section-number">1</span> Introduction and Setup</a>
 <ul>
-<li><a href="#demonstration-dataset-rat-liver-slice-compound-treatments"><span class="toc-section-number">1.1</span> Demonstration Dataset: Rat Liver Slice Compound Treatments</a></li>
+<li><a href="#demonstration-dataset-rat-liver-slice-compound-treatments"><span class="toc-section-number">1.1</span> Demonstration Dataset: Rat Liver
+Slice Compound Treatments</a></li>
 <li><a href="#starting-dgeobj-creation"><span class="toc-section-number">1.2</span> Starting DGEobj creation</a></li>
-<li><a href="#limmavoom-workflow-reference"><span class="toc-section-number">1.3</span> Limma/Voom Workflow Reference</a></li>
+<li><a href="#limmavoom-workflow-reference"><span class="toc-section-number">1.3</span> Limma/Voom Workflow
+Reference</a></li>
 </ul></li>
-<li><a href="#pre-processing"><span class="toc-section-number">2</span> Pre-processing</a>
+<li><a href="#pre-processing"><span class="toc-section-number">2</span>
+Pre-processing</a>
 <ul>
 <li><a href="#low-intensity-filtering"><span class="toc-section-number">2.1</span> Low Intensity Filtering</a></li>
-<li><a href="#filter-for-protein-coding-genes"><span class="toc-section-number">2.2</span> Filter for Protein Coding Genes</a></li>
+<li><a href="#filter-for-protein-coding-genes"><span class="toc-section-number">2.2</span> Filter for Protein Coding
+Genes</a></li>
 </ul></li>
-<li><a href="#dge-analysis"><span class="toc-section-number">3</span> DGE Analysis</a>
+<li><a href="#dge-analysis"><span class="toc-section-number">3</span>
+DGE Analysis</a>
 <ul>
 <li><a href="#edger-normalization"><span class="toc-section-number">3.1</span> edgeR Normalization</a></li>
 <li><a href="#define-the-model-formula"><span class="toc-section-number">3.2</span> Define the Model Formula</a></li>
-<li><a href="#check-for-surrogate-variables-unaccounted-for-variation"><span class="toc-section-number">3.3</span> Check for Surrogate Variables (unaccounted-for variation)</a></li>
-<li><a href="#run-voom-and-fit-the-model-lmfit"><span class="toc-section-number">3.4</span> Run Voom and fit the model (lmFit)</a></li>
-<li><a href="#run-contrasts"><span class="toc-section-number">3.5</span> Run Contrasts</a></li>
+<li><a href="#check-for-surrogate-variables-unaccounted-for-variation"><span class="toc-section-number">3.3</span> Check for Surrogate Variables
+(unaccounted-for variation)</a></li>
+<li><a href="#run-voom-and-fit-the-model-lmfit"><span class="toc-section-number">3.4</span> Run Voom and fit the model
+(lmFit)</a></li>
+<li><a href="#run-contrasts"><span class="toc-section-number">3.5</span>
+Run Contrasts</a></li>
 <li><a href="#alternative-fdr-scores"><span class="toc-section-number">3.6</span> Alternative FDR scores</a></li>
 </ul></li>
 </ul>
 </div>
 
 <div id="introduction-and-setup" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Introduction and Setup</h1>
+<h1><span class="header-section-number">1</span> Introduction and
+Setup</h1>
 <div id="demonstration-dataset-rat-liver-slice-compound-treatments" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Demonstration Dataset: Rat Liver Slice Compound Treatments</h2>
-<p>The following dataset was selected to demonstrate building and working with the DGEobj data structure and associated utilities</p>
+<h2><span class="header-section-number">1.1</span> Demonstration
+Dataset: Rat Liver Slice Compound Treatments</h2>
+<p>The following dataset was selected to demonstrate building and
+working with the DGEobj data structure and associated utilities</p>
 <blockquote>
-<p>Huang X, Cai H, Ammar R, Zhang Y et al. Molecular characterization of a precision-cut rat liver slice model for the evaluation of antifibrotic compounds. Am J Physiol Gastrointest Liver Physiol 2019 Jan 1;316(1):G15-G24. PMID: 30406699</p>
+<p>Huang X, Cai H, Ammar R, Zhang Y et al. Molecular characterization of
+a precision-cut rat liver slice model for the evaluation of antifibrotic
+compounds. Am J Physiol Gastrointest Liver Physiol 2019 Jan
+1;316(1):G15-G24. PMID: 30406699</p>
 </blockquote>
-<p>Briefly, livers were removed from rats 4 weeks after bile duct ligation or sham operation. Rat liver slices were incubated in vitro with potential anti-fibrotic compounds. At the end of the incubation whole transcriptome RNA-Seq analysis was performed.</p>
-<p>Files containing counts, sample annotations, and QC data associated with this project can be downloaded from the <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120804">NCBI GEO resource</a>.</p>
-<p>The GEO data includes Ensembl gene IDs. Additional gene information such as chromosome positions, type of transcript, etc., are downloaded from Ensembl using the biomaRt package.</p>
+<p>Briefly, livers were removed from rats 4 weeks after bile duct
+ligation or sham operation. Rat liver slices were incubated in vitro
+with potential anti-fibrotic compounds. At the end of the incubation
+whole transcriptome RNA-Seq analysis was performed.</p>
+<p>Files containing counts, sample annotations, and QC data associated
+with this project can be downloaded from the <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE120804">NCBI
+GEO resource</a>.</p>
+<p>The GEO data includes Ensembl gene IDs. Additional gene information
+such as chromosome positions, type of transcript, etc., are downloaded
+from Ensembl using the biomaRt package.</p>
 </div>
 <div id="starting-dgeobj-creation" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Starting DGEobj creation</h2>
-<p>The starting point for the discussions in this vignette is a DGEobj that is ready for analysis. The demonstration dataset detailed above is used to create the DGEobj R object step-by-step in sections 1-4 of the DGEobj package vignette: <a href="https://CRAN.R-project.org/package=DGEobj/vignettes/DGEobj_Overview.html">DGEobj_Overview</a>. This vignette can be accessed from inside an R session using <code>vignette(&quot;DGEobj_Overview&quot;, package = &quot;DGEobj&quot;)</code>. The detailed instructions are not be repeated in this vignette, but the starting R object named “dgeObj” is created with the same steps/data as detailed in sections 1-4.</p>
+<h2><span class="header-section-number">1.2</span> Starting DGEobj
+creation</h2>
+<p>The starting point for the discussions in this vignette is a DGEobj
+that is ready for analysis. The demonstration dataset detailed above is
+used to create the DGEobj R object step-by-step in sections 1-4 of the
+DGEobj package vignette: <a href="https://CRAN.R-project.org/package=DGEobj/vignettes/DGEobj_Overview.html">DGEobj_Overview</a>.
+This vignette can be accessed from inside an R session using
+<code>vignette(&quot;DGEobj_Overview&quot;, package = &quot;DGEobj&quot;)</code>. The
+detailed instructions are not be repeated in this vignette, but the
+starting R object named “dgeObj” is created with the same steps/data as
+detailed in sections 1-4.</p>
 <p>Columns available in this object for building contrasts:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>designCol <span class="ot">&lt;-</span> <span class="st">&quot;ReplicateGroup&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(designCol, (<span class="fu">unique</span>(dgeObj<span class="sc">$</span>design[[designCol]])))</span></code></pre></div>
 <pre><code>## [1] &quot;ReplicateGroupBDL_Sora&quot;     &quot;ReplicateGroupBDL&quot;          &quot;ReplicateGroupBDL_Nint&quot;    
 ## [4] &quot;ReplicateGroupBDL_EXT-1024&quot; &quot;ReplicateGroupSham&quot;</code></pre>
-<p>If using formulas there may be a few additional steps that may be necessary depending on the data:</p>
+<p>If using formulas there may be a few additional steps that may be
+necessary depending on the data:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This step is only necessary IF there is a numeric column that you want</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="do">## to treat as a factor in formulas</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dgeObj<span class="sc">$</span>design<span class="sc">$</span>ReplicateGroup <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(dgeObj<span class="sc">$</span>design<span class="sc">$</span>ReplicateGroup)</span>
@@ -308,26 +532,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <div id="limmavoom-workflow-reference" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Limma/Voom Workflow Reference</h2>
-<p>At this point our starting object is fully setup for the analysis. The next step is to run the Limma/Voom Differential Gene Expression analysis as described in:</p>
+<h2><span class="header-section-number">1.3</span> Limma/Voom Workflow
+Reference</h2>
+<p>At this point our starting object is fully setup for the analysis.
+The next step is to run the Limma/Voom Differential Gene Expression
+analysis as described in:</p>
 <blockquote>
-<p>Law CW, Alhamdoosh M, Su S et al. RNA-seq analysis is easy as 1-2-3 with limma, Glimma and edgeR. F1000Research 2018, 5:1408. <a href="https://doi.org/10.12688/f1000research.9005.3">DOI: 10.12688/f1000research.9005.3</a></p>
+<p>Law CW, Alhamdoosh M, Su S et al. RNA-seq analysis is easy as 1-2-3
+with limma, Glimma and edgeR. F1000Research 2018, 5:1408. <a href="https://doi.org/10.12688/f1000research.9005.3">DOI:
+10.12688/f1000research.9005.3</a></p>
 </blockquote>
 <p><br /><br /></p>
 </div>
 </div>
 <div id="pre-processing" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Pre-processing</h1>
+<h1><span class="header-section-number">2</span> Pre-processing</h1>
 <div id="low-intensity-filtering" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Low Intensity Filtering</h2>
-<p>Typically, genes with near zero counts are removed before further analysis. They contain no useful information, increase the multiple test burden, and could (under some conditions) compromise the normalization and violate assumptions implicit in linear modeling.</p>
-<p>Two methods for low intensity filtering are supplied; min counts, and FPK. The lowIntFilter function will use any combination of these methods. The sampleFraction argument defines the proportion of samples that must meet all specified criteria to keep a gene.</p>
-<p>It is typically recommended to use counts &gt;= 10 and FPK &gt;=5. But the filter should be set as close as possible to criteria the original analyst used. A custom filter can also be substituted.</p>
-<p>Minimum counts &gt;= 10 is commonly used to filter out low intensity genes. But mincount is biased against short genes. In contrast, FPK (fragments per kilobase), described below, provides an intensity measure that is not length biased.</p>
-<p>Fragments per kilobase (FPK) is another filtering criterion. For an average size ~2kb mRNA FPK = 5 is equivalent to counts = 10, however, FPK is not length biased. Another useful property of FPK is that FPK can be calculated for intergenic DNA and thus provides an empirical background level of stochastic or spurious transcription. This estimate is surely conservative in that there is very likely some real transcription going on in intergenic regions. Typically, the intergenic FPK level is below 5 so FPK &gt;= 5 is an appropriate threshold.</p>
-<p>The FPK + mincount filters can both be applied together to select detected genes. The one must decide how to integrate this information across multiple samples and experiment groups. You can get more sophisticated and do this on a group-wise basis so you can include genes that were expressed in at least one of your treatment groups. That is left as an exercise for the reader – note that groupwise filtering introduces a bias that affects your pvalue calibration. To avoid such bias, simply require 50% of samples to pass the intensity threshold and then modify the percentage to adjust the stringency.</p>
-<p>If using FPK, a length adjusted measure, you must also supply the geneLength argument. A Gene length value for each gene is thus required in the gene annotation if FPK is to be used. The RSEM algorithm for generating gene counts also provide an effective length calculation for each gene that may be conveniently used for the FPK calculations.</p>
-<p>In this example, only the counts were provided in the GEO source and thus the gene length information required to use FPK is not available. Therefore, a simple count threshold will be used and 50% of samples are required to meet these criteria for the gene to be included.</p>
+<h2><span class="header-section-number">2.1</span> Low Intensity
+Filtering</h2>
+<p>Typically, genes with near zero counts are removed before further
+analysis. They contain no useful information, increase the multiple test
+burden, and could (under some conditions) compromise the normalization
+and violate assumptions implicit in linear modeling.</p>
+<p>Two methods for low intensity filtering are supplied; min counts, and
+FPK. The lowIntFilter function will use any combination of these
+methods. The sampleFraction argument defines the proportion of samples
+that must meet all specified criteria to keep a gene.</p>
+<p>It is typically recommended to use counts &gt;= 10 and FPK &gt;=5.
+But the filter should be set as close as possible to criteria the
+original analyst used. A custom filter can also be substituted.</p>
+<p>Minimum counts &gt;= 10 is commonly used to filter out low intensity
+genes. But mincount is biased against short genes. In contrast, FPK
+(fragments per kilobase), described below, provides an intensity measure
+that is not length biased.</p>
+<p>Fragments per kilobase (FPK) is another filtering criterion. For an
+average size ~2kb mRNA FPK = 5 is equivalent to counts = 10, however,
+FPK is not length biased. Another useful property of FPK is that FPK can
+be calculated for intergenic DNA and thus provides an empirical
+background level of stochastic or spurious transcription. This estimate
+is surely conservative in that there is very likely some real
+transcription going on in intergenic regions. Typically, the intergenic
+FPK level is below 5 so FPK &gt;= 5 is an appropriate threshold.</p>
+<p>The FPK + mincount filters can both be applied together to select
+detected genes. The one must decide how to integrate this information
+across multiple samples and experiment groups. You can get more
+sophisticated and do this on a group-wise basis so you can include genes
+that were expressed in at least one of your treatment groups. That is
+left as an exercise for the reader – note that groupwise filtering
+introduces a bias that affects your pvalue calibration. To avoid such
+bias, simply require 50% of samples to pass the intensity threshold and
+then modify the percentage to adjust the stringency.</p>
+<p>If using FPK, a length adjusted measure, you must also supply the
+geneLength argument. A Gene length value for each gene is thus required
+in the gene annotation if FPK is to be used. The RSEM algorithm for
+generating gene counts also provide an effective length calculation for
+each gene that may be conveniently used for the FPK calculations.</p>
+<p>In this example, only the counts were provided in the GEO source and
+thus the gene length information required to use FPK is not available.
+Therefore, a simple count threshold will be used and 50% of samples are
+required to meet these criteria for the gene to be included.</p>
 <p><strong>Dimensions before filtering: 1000, 48 </strong></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gene filter criteria</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>countThreshold <span class="ot">&lt;-</span> <span class="dv">10</span>   <span class="co"># Must meet or exceed this value</span></span>
@@ -339,19 +602,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Dimensions after filtering: 1000, 48 </strong></p>
 </div>
 <div id="filter-for-protein-coding-genes" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> Filter for Protein Coding Genes</h2>
-<p>Often an analysis is focused on protein-coding genes. Here the Ensembl gene_biotype column is used in the gene annotation to keep only protein-coding genes.</p>
+<h2><span class="header-section-number">2.2</span> Filter for Protein
+Coding Genes</h2>
+<p>Often an analysis is focused on protein-coding genes. Here the
+Ensembl gene_biotype column is used in the gene annotation to keep only
+protein-coding genes.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>idx    <span class="ot">&lt;-</span> dgeObj<span class="sc">$</span>geneData<span class="sc">$</span>gene_biotype <span class="sc">==</span> <span class="st">&quot;protein_coding&quot;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dgeObj <span class="ot">&lt;-</span> dgeObj[idx,]</span></code></pre></div>
-<p><strong>Dimensions after filtering for protein_coding: 951, 48 </strong></p>
+<p><strong>Dimensions after filtering for protein_coding: 951, 48
+</strong></p>
 <p><br /><br /></p>
 </div>
 </div>
 <div id="dge-analysis" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> DGE Analysis</h1>
+<h1><span class="header-section-number">3</span> DGE Analysis</h1>
 <div id="edger-normalization" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> edgeR Normalization</h2>
-<p>This step simply applies edgeR::calcNormFactors to effect TMM normalization. This results in a DGEList object being added to the DGEobj. Note that the counts matrix within the DGEList object is NOT normalized counts. Rather a separate item in the DGEList contains the norm factors and you should use the edgeR cpm function to extract normalized counts from the DGEList.</p>
+<h2><span class="header-section-number">3.1</span> edgeR
+Normalization</h2>
+<p>This step simply applies edgeR::calcNormFactors to effect TMM
+normalization. This results in a DGEList object being added to the
+DGEobj. Note that the counts matrix within the DGEList object is NOT
+normalized counts. Rather a separate item in the DGEList contains the
+norm factors and you should use the edgeR cpm function to extract
+normalized counts from the DGEList.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data   <span class="ot">&lt;-</span> <span class="fu">runEdgeRNorm</span>(dgeObj, <span class="at">includePlot =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dgeObj <span class="ot">&lt;-</span> data[[<span class="dv">1</span>]]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -362,7 +635,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="define-the-model-formula" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> Define the Model Formula</h2>
+<h2><span class="header-section-number">3.2</span> Define the Model
+Formula</h2>
 <p>Provide a formula and construct the design matrix:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formula must be composed of column names from the design table</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">&#39;~ 0 + ReplicateGroup&#39;</span></span>
@@ -389,9 +663,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                  <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="check-for-surrogate-variables-unaccounted-for-variation" class="section level2" number="3.3">
-<h2 number="3.3"><span class="header-section-number">3.3</span> Check for Surrogate Variables (unaccounted-for variation)</h2>
-<p>SVA looks for hidden structure in the data using PCA-like methods. It defines surrogate variables that can be added to your model to account for systematic trends that do not map to known experiment factors. This can improve power to detect changes due to factors of interest.</p>
-<p>The ReplicateGroup design column captures both disease status and drug treatment groups. With this design, no SVs are detected.</p>
+<h2><span class="header-section-number">3.3</span> Check for Surrogate
+Variables (unaccounted-for variation)</h2>
+<p>SVA looks for hidden structure in the data using PCA-like methods. It
+defines surrogate variables that can be added to your model to account
+for systematic trends that do not map to known experiment factors. This
+can improve power to detect changes due to factors of interest.</p>
+<p>The ReplicateGroup design column captures both disease status and
+drug treatment groups. With this design, no SVs are detected.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>log2cpm      <span class="ot">&lt;-</span> <span class="fu">convertCounts</span>(dgeObj<span class="sc">$</span>counts,</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">unit      =</span> <span class="st">&quot;cpm&quot;</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">log       =</span> <span class="cn">TRUE</span>,</span>
@@ -401,8 +680,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>sva<span class="sc">::</span><span class="fu">num.sv</span>(log2cpm, designMatrix, <span class="at">method =</span> <span class="st">&quot;leek&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<p>To illustrate SVA use, a model is constructed using only disease status and ignoring compound treatment. The compound treatment effects should be discoverable as a surrogate variable.</p>
-<p>Note that here the SVA output is captured in a fork of the main DGEobj.</p>
+<p>To illustrate SVA use, a model is constructed using only disease
+status and ignoring compound treatment. The compound treatment effects
+should be discoverable as a surrogate variable.</p>
+<p>Note that here the SVA output is captured in a fork of the main
+DGEobj.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formula must be composed of column names from the design table.</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">&lt;-</span> <span class="st">&#39;~ 0 + DiseaseStatus&#39;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -431,13 +713,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Number of significant surrogate variables is:  1 
 ## Iteration (out of 5 ):1  2  3  4  5</code></pre>
 <p>Indeed SVA now identifies one surrogate variable.</p>
-<p>If n.sv is &gt;0, the runSVA function adds the following changes to the DGEobj:</p>
+<p>If n.sv is &gt;0, the runSVA function adds the following changes to
+the DGEobj:</p>
 <ol style="list-style-type: decimal">
 <li>Adds a column for each SV to the design table</li>
 <li>Stores the svobj from the SVA analysis</li>
-<li>Creates and stores a new design matrix with the SV columns and adds a &quot;_sva&quot; suffix to the designMatrix name</li>
+<li>Creates and stores a new design matrix with the SV columns and adds
+a “_sva” suffix to the designMatrix name</li>
 </ol>
-<p>The user can then use the new design matrix to incorporate the SVs into the analysis.</p>
+<p>The user can then use the new design matrix to incorporate the SVs
+into the analysis.</p>
 <table>
 <colgroup>
 <col width="23%" />
@@ -596,9 +881,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <div id="run-voom-and-fit-the-model-lmfit" class="section level2" number="3.4">
-<h2 number="3.4"><span class="header-section-number">3.4</span> Run Voom and fit the model (lmFit)</h2>
-<p>The duplicateCorrelation method in Voom optionally allows the user to account for a random effect, such as repeated measurements on the same animal in this case.</p>
-<p>To invoke duplicateCorrelation in the runVoom function, assign a blocking variable to the dupCorBlock argument.</p>
+<h2><span class="header-section-number">3.4</span> Run Voom and fit the
+model (lmFit)</h2>
+<p>The duplicateCorrelation method in Voom optionally allows the user to
+account for a random effect, such as repeated measurements on the same
+animal in this case.</p>
+<p>To invoke duplicateCorrelation in the runVoom function, assign a
+blocking variable to the dupCorBlock argument.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Use duplicateCorrelation when subjects have been sampled more than once even</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">## if under different conditions (e.g. treated, untreated)</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>dupCorBlock <span class="ot">&lt;-</span> dgeObj<span class="sc">$</span>design<span class="sc">$</span>AnimalNum</span>
@@ -615,12 +904,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">plot of chunk runVoom</p>
 </div>
 <pre><code>## Duplicate Correlation = 0.0232</code></pre>
-<p>The Mean-variance trend nicely shows the heteroscedasticity typical of RNA-Seq data (variance dependent on intensity).</p>
-<p>If a downward hook on the left end of this distribution is observed, it means a more stringent low intensity filter should be used.</p>
+<p>The Mean-variance trend nicely shows the heteroscedasticity typical
+of RNA-Seq data (variance dependent on intensity).</p>
+<p>If a downward hook on the left end of this distribution is observed,
+it means a more stringent low intensity filter should be used.</p>
 </div>
 <div id="run-contrasts" class="section level2" number="3.5">
-<h2 number="3.5"><span class="header-section-number">3.5</span> Run Contrasts</h2>
-<p>Function runContrasts takes a named list of contrasts (see config chunk).</p>
+<h2><span class="header-section-number">3.5</span> Run Contrasts</h2>
+<p>Function runContrasts takes a named list of contrasts (see config
+chunk).</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Name the design matrix to be used</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>designMatrixName <span class="ot">&lt;-</span> <span class="st">&quot;ReplicateGroupDesign&quot;</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -858,16 +1150,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>After executing runContrasts, the topTable dataframes are present in the DGEobj and the DGE analysis is complete.</p>
+<p>After executing runContrasts, the topTable dataframes are present in
+the DGEobj and the DGE analysis is complete.</p>
 </div>
 <div id="alternative-fdr-scores" class="section level2" number="3.6">
-<h2 number="3.6"><span class="header-section-number">3.6</span> Alternative FDR scores</h2>
-<p>topTable provides a BH FDR value (adj.P.Val). Two optional FDR measures are supported that add additional columns to the topTable results. Use the Qvalue and IHW arguments to invoke these additional FDR measures.</p>
+<h2><span class="header-section-number">3.6</span> Alternative FDR
+scores</h2>
+<p>topTable provides a BH FDR value (adj.P.Val). Two optional FDR
+measures are supported that add additional columns to the topTable
+results. Use the Qvalue and IHW arguments to invoke these additional FDR
+measures.</p>
 <ul>
-<li><code>Qvalue = TRUE</code> adds “qvalue” and “qvalue.lfdr” columns to the topTable output.</li>
-<li><code>IHW = TRUE</code> adds columns “ihw.adj_pvalue” and “ihw.weight”.</li>
+<li><code>Qvalue = TRUE</code> adds “qvalue” and “qvalue.lfdr” columns
+to the topTable output.</li>
+<li><code>IHW = TRUE</code> adds columns “ihw.adj_pvalue” and
+“ihw.weight”.</li>
 </ul>
-<p>See the vignettes for the qvalue and IHW packages for more details on these alternative FDR measures.</p>
+<p>See the vignettes for the qvalue and IHW packages for more details on
+these alternative FDR measures.</p>
 </div>
 </div>
 
