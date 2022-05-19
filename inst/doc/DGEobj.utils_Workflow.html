@@ -12,7 +12,7 @@
 
 <meta name="author" content="John R. Thompson" />
 
-<meta name="date" content="2021-04-21" />
+<meta name="date" content="2022-05-19" />
 
 <title>DGEobj.utils: An Example Workflow</title>
 
@@ -334,7 +334,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">DGEobj.utils: An Example Workflow</h1>
 <h4 class="author">John R. Thompson</h4>
-<h4 class="date">2021-04-21</h4>
+<h4 class="date">2022-05-19</h4>
 
 
 <div id="TOC">
@@ -411,8 +411,7 @@ detailed in sections 1-4.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>designCol <span class="ot">&lt;-</span> <span class="st">&quot;ReplicateGroup&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(designCol, (<span class="fu">unique</span>(dgeObj<span class="sc">$</span>design[[designCol]])))</span></code></pre></div>
-<pre><code>## [1] &quot;ReplicateGroupBDL_Sora&quot;     &quot;ReplicateGroupBDL&quot;          &quot;ReplicateGroupBDL_Nint&quot;    
-## [4] &quot;ReplicateGroupBDL_EXT-1024&quot; &quot;ReplicateGroupSham&quot;</code></pre>
+<pre><code>## [1] &quot;ReplicateGroupBDL_Sora&quot;     &quot;ReplicateGroupBDL&quot;          &quot;ReplicateGroupBDL_Nint&quot;     &quot;ReplicateGroupBDL_EXT-1024&quot; &quot;ReplicateGroupSham&quot;</code></pre>
 <p>If using formulas there may be a few additional steps that may be
 necessary depending on the data:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## This step is only necessary IF there is a numeric column that you want</span></span>
@@ -835,7 +834,7 @@ into the analysis.</p>
 <td align="left">DGEList</td>
 <td align="left">951</td>
 <td align="left">48</td>
-<td align="left">2021-04-21 11:06:05</td>
+<td align="left">2022-05-19 14:23:33</td>
 </tr>
 <tr class="even">
 <td align="left">ReplicateGroupDesign</td>
@@ -845,7 +844,7 @@ into the analysis.</p>
 <td align="left">matrix</td>
 <td align="left">48</td>
 <td align="left">5</td>
-<td align="left">2021-04-21 11:06:07</td>
+<td align="left">2022-05-19 14:23:33</td>
 </tr>
 <tr class="odd">
 <td align="left">DiseaseStatusDesign</td>
@@ -855,7 +854,7 @@ into the analysis.</p>
 <td align="left">matrix</td>
 <td align="left">48</td>
 <td align="left">2</td>
-<td align="left">2021-04-21 11:06:07</td>
+<td align="left">2022-05-19 14:23:34</td>
 </tr>
 <tr class="even">
 <td align="left">DiseaseStatusDesign_svobj</td>
@@ -865,7 +864,7 @@ into the analysis.</p>
 <td align="left">list</td>
 <td align="left">4</td>
 <td align="left">NA</td>
-<td align="left">2021-04-21 11:06:07</td>
+<td align="left">2022-05-19 14:23:34</td>
 </tr>
 <tr class="odd">
 <td align="left">DiseaseStatusDesign_sva</td>
@@ -875,7 +874,7 @@ into the analysis.</p>
 <td align="left">matrix</td>
 <td align="left">48</td>
 <td align="left">3</td>
-<td align="left">2021-04-21 11:06:07</td>
+<td align="left">2022-05-19 14:23:34</td>
 </tr>
 </tbody>
 </table>
@@ -918,8 +917,7 @@ chunk).</p>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the available column names for constructing contrasts:</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">colnames</span>(dgeObj<span class="sc">$</span>ReplicateGroupDesign))</span></code></pre></div>
-<pre><code>## [1] &quot;ReplicateGroupSham&quot;         &quot;ReplicateGroupBDL&quot;          &quot;ReplicateGroupBDL_EXT.1024&quot;
-## [4] &quot;ReplicateGroupBDL_Nint&quot;     &quot;ReplicateGroupBDL_Sora&quot;</code></pre>
+<pre><code>## [1] &quot;ReplicateGroupSham&quot;         &quot;ReplicateGroupBDL&quot;          &quot;ReplicateGroupBDL_EXT.1024&quot; &quot;ReplicateGroupBDL_Nint&quot;     &quot;ReplicateGroupBDL_Sora&quot;</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the named contrasts from design matrix column names</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>contrastList  <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">BDL_vs_Sham    =</span> <span class="st">&quot;ReplicateGroupBDL - ReplicateGroupSham&quot;</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">EXT1024_vs_BDL =</span> <span class="st">&quot;ReplicateGroupBDL_EXT.1024  - ReplicateGroupBDL&quot;</span>,</span>
@@ -1046,7 +1044,7 @@ chunk).</p>
 <td align="left">DGEList</td>
 <td align="left">951</td>
 <td align="left">48</td>
-<td align="left">2021-04-21 11:06:05</td>
+<td align="left">2022-05-19 14:23:33</td>
 </tr>
 <tr class="even">
 <td align="left">ReplicateGroupDesign</td>
@@ -1056,7 +1054,7 @@ chunk).</p>
 <td align="left">matrix</td>
 <td align="left">48</td>
 <td align="left">5</td>
-<td align="left">2021-04-21 11:06:07</td>
+<td align="left">2022-05-19 14:23:33</td>
 </tr>
 <tr class="odd">
 <td align="left">ReplicateGroupDesign_Elist</td>
@@ -1066,7 +1064,7 @@ chunk).</p>
 <td align="left">EList</td>
 <td align="left">951</td>
 <td align="left">48</td>
-<td align="left">2021-04-21 11:06:11</td>
+<td align="left">2022-05-19 14:23:38</td>
 </tr>
 <tr class="even">
 <td align="left">ReplicateGroupDesign_corFit</td>
@@ -1076,7 +1074,7 @@ chunk).</p>
 <td align="left">list</td>
 <td align="left">3</td>
 <td align="left">NA</td>
-<td align="left">2021-04-21 11:06:11</td>
+<td align="left">2022-05-19 14:23:38</td>
 </tr>
 <tr class="odd">
 <td align="left">ReplicateGroupDesign_fit</td>
@@ -1086,7 +1084,7 @@ chunk).</p>
 <td align="left">MArrayLM</td>
 <td align="left">951</td>
 <td align="left">5</td>
-<td align="left">2021-04-21 11:06:11</td>
+<td align="left">2022-05-19 14:23:38</td>
 </tr>
 <tr class="even">
 <td align="left">ReplicateGroupDesign_fit_cm</td>
@@ -1096,7 +1094,7 @@ chunk).</p>
 <td align="left">matrix</td>
 <td align="left">5</td>
 <td align="left">4</td>
-<td align="left">2021-04-21 11:06:12</td>
+<td align="left">2022-05-19 14:23:39</td>
 </tr>
 <tr class="odd">
 <td align="left">ReplicateGroupDesign_fit_cf</td>
@@ -1106,7 +1104,7 @@ chunk).</p>
 <td align="left">MArrayLM</td>
 <td align="left">951</td>
 <td align="left">4</td>
-<td align="left">2021-04-21 11:06:12</td>
+<td align="left">2022-05-19 14:23:39</td>
 </tr>
 <tr class="even">
 <td align="left">BDL_vs_Sham</td>
@@ -1116,7 +1114,7 @@ chunk).</p>
 <td align="left">data.frame</td>
 <td align="left">951</td>
 <td align="left">13</td>
-<td align="left">2021-04-21 11:06:12</td>
+<td align="left">2022-05-19 14:23:39</td>
 </tr>
 <tr class="odd">
 <td align="left">EXT1024_vs_BDL</td>
@@ -1126,7 +1124,7 @@ chunk).</p>
 <td align="left">data.frame</td>
 <td align="left">951</td>
 <td align="left">13</td>
-<td align="left">2021-04-21 11:06:12</td>
+<td align="left">2022-05-19 14:23:39</td>
 </tr>
 <tr class="even">
 <td align="left">Nint_vs_BDL</td>
@@ -1136,7 +1134,7 @@ chunk).</p>
 <td align="left">data.frame</td>
 <td align="left">951</td>
 <td align="left">13</td>
-<td align="left">2021-04-21 11:06:12</td>
+<td align="left">2022-05-19 14:23:39</td>
 </tr>
 <tr class="odd">
 <td align="left">Sora_vs_BDL</td>
@@ -1146,7 +1144,7 @@ chunk).</p>
 <td align="left">data.frame</td>
 <td align="left">951</td>
 <td align="left">13</td>
-<td align="left">2021-04-21 11:06:12</td>
+<td align="left">2022-05-19 14:23:39</td>
 </tr>
 </tbody>
 </table>
